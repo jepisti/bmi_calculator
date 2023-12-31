@@ -18,6 +18,9 @@ class _InputPageState extends State<InputPage> {
 //terner operator
 
   int height = 170;
+  int weight = 70;
+  int age = 40;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,24 +118,90 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
               child: Row(
             children: [
               Expanded(
                 child: ReusableCard(
                   colour: kCardColorCode,
-                  cardChild: CardContent(
-                    icon: FontAwesomeIcons.mars,
-                    label: 'MALE',
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: () {
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
                   colour: kCardColorCode,
-                  cardChild: CardContent(
-                    icon: FontAwesomeIcons.venus,
-                    label: 'FEMALE',
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'AGE',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -145,6 +214,35 @@ class _InputPageState extends State<InputPage> {
             height: kBottomContainerHeight,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton(
+      {super.key, required this.icon, required this.onPressed});
+
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      constraints: const BoxConstraints.tightFor(
+        width: 50.0,
+        height: 50.0,
+      ),
+      elevation: 6.0,
+      //shape: const CircleBorder(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      fillColor: const Color(0xFF4C4F5E),
+      onPressed: onPressed,
+      child: Icon(
+        icon,
+        color: Colors.white,
       ),
     );
   }
