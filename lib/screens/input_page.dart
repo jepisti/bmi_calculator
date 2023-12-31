@@ -24,6 +24,7 @@ class _InputPageState extends State<InputPage> {
   int height = 170;
   int weight = 70;
   int age = 40;
+  int gender = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class _InputPageState extends State<InputPage> {
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.male;
+                      gender = 1;
                     });
                   },
                   colour: selectedGender == Gender.male
@@ -58,6 +60,7 @@ class _InputPageState extends State<InputPage> {
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.female;
+                      gender = 2;
                     });
                   },
                   colour: selectedGender == Gender.female
@@ -214,8 +217,11 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
-              CalculatorBrain calc =
-                  CalculatorBrain(height: height, weight: weight);
+              CalculatorBrain calc = CalculatorBrain(
+                height: height,
+                weight: weight,
+                gender: gender,
+              );
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -223,6 +229,7 @@ class _InputPageState extends State<InputPage> {
                     bmiResult: calc.calculateBMI(),
                     resultText: calc.getResult(),
                     interpretation: calc.getInterpretation(),
+                    idealWeight: calc.getNormal(),
                   ),
                 ),
               );

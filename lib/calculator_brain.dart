@@ -1,16 +1,29 @@
 import 'dart:math';
 
 class CalculatorBrain {
-  CalculatorBrain({required this.height, required this.weight});
+  CalculatorBrain(
+      {required this.gender, required this.height, required this.weight});
 
   final int height;
   final int weight;
+  final int gender;
 
   double? _bmi;
 
   String calculateBMI() {
     _bmi = weight / pow(height / 100, 2);
     return _bmi!.toStringAsFixed(1);
+  }
+
+  String getNormal() {
+    double normal = 0;
+    if (gender == 1) {
+      normal = (height - 100) * 0.9;
+    } else {
+      normal = (height - 100) * 0.85;
+    }
+
+    return normal.toStringAsFixed(1);
   }
 
   String getResult() {

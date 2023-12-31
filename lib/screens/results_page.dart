@@ -5,15 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage(
-      {super.key,
-      required this.bmiResult,
-      required this.resultText,
-      required this.interpretation});
+  const ResultsPage({
+    super.key,
+    required this.bmiResult,
+    required this.resultText,
+    required this.interpretation,
+    required this.idealWeight,
+  });
 
   final String bmiResult;
   final String resultText;
   final String interpretation;
+  final String idealWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,26 @@ class ResultsPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: kBodyTextStyle,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Ideal weight:   ',
+                        textAlign: TextAlign.center,
+                        style: kBodyTextStyle,
+                      ),
+                      Text(
+                        idealWeight,
+                        textAlign: TextAlign.center,
+                        style: kBodyTextStyle,
+                      ),
+                      const Text(
+                        ' kg ',
+                        textAlign: TextAlign.center,
+                        style: kBodyTextStyle,
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
