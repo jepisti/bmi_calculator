@@ -43,6 +43,7 @@ class _InputPageState extends State<InputPage> {
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.male;
+
                       gender = 1;
                     });
                   },
